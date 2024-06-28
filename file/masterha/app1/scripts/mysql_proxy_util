@@ -1,0 +1,7 @@
+#!/usr/bin/env perl
+use strict;
+package mysql_proxy_util;
+our $proxy_ip1="@masterip";
+our $proxy_ip2="@slaveip";
+our $ssh_user="root";
+our $ssh_port="@sshport";

@@ -1,0 +1,29 @@
+[server default]
+manager_workdir=/etc/masterha/app1
+manager_log=/etc/masterha/app1/manager.log
+ssh_user=root
+ssh_port=@sshport
+user=mha	
+password=@mhapwd
+ping_type=SELECT
+repl_user=repl
+repl_password=@replpwd
+master_binlog_dir=/usr/local/mysql/data
+ping_interval=3
+#master failover时执行,不配置vip时不用配
+master_ip_failover_script=/etc/masterha/app1/scripts/master_ip_failover_proxy
+#shutdown_script=/etc/masterha/power_manager
+report_script=/etc/masterha/app1/scripts/send_report_proxy  
+master_ip_online_change_script=/etc/masterha/app1/scripts/master_ip_online_change_proxy
+secondary_check_script=masterha_secondary_check -s @second_check_ip
+[server1]
+hostname=@masterip
+port=3306
+candidate_master=1
+#check_repl_delay=0
+ 
+[server2]
+hostname=@slaveip
+port=3306
+candidate_master=1  
+#check_repl_delay=0
