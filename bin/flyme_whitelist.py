@@ -8,57 +8,18 @@ from xxxxxxx_users import *
 def system_whitelist(masterip, slaveip, ssh_user, ssh_pwd, ssh_port):
     client = get_ssh_client(masterip, ssh_user, ssh_pwd, ssh_port)
     exec_cmd(client, ssh_user, "systemctl restart firewalld")
-    # 运维管理平台
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.128.52.91/32 accept' --permanent")
-    # 神州发布平台
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.128.5.116/32 accept' --permanent")
-    # 长江北发布平台
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.131.24.88/32 accept' --permanent")
-    # 测试环境备份服务器
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.131.15.28/32 accept' --permanent")
-    # 生产环境备份gocron任务节点
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=100.68.97.68/32 accept' --permanent")
 
 
-
-    # 夜莺监控系统
+    # 系统
     # prod
     exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.128.18.59 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.128.16.225 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.128.16.224 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.128.16.219 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.128.16.220 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.128.16.223 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.128.122.0/23 port port=9100-9306 protocol=tcp accept' --permanent")
+             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10. port port=96 protocol=tcp accept' --permanent")
+
     # test
     exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.131.248.29 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.131.248.27 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.131.248.28 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.131.248.30 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.131.248.31 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.131.74.0/24 port port=9100-9306 protocol=tcp accept' --permanent")
-    exec_cmd(client, ssh_user,
-             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.131.160.0/20 port port=9100-9306 protocol=tcp accept' --permanent")
+             "firewall-cmd --add-rich-rule='rule family=ipv4 source address=10.0 port port=910006 protocol=tcp accept' --permanent")
 
-    # 集群主从自身互访
+    # 集群主身互访
     exec_cmd(client, ssh_user,
              "firewall-cmd --add-rich-rule='rule family=ipv4 source address=%s/32 accept' --permanent" % masterip)
     exec_cmd(client, ssh_user,
